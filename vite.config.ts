@@ -4,4 +4,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [preact(), tailwindcss()],
+  base: "/react-chess/", // Set base to current directory for correct asset paths
 });
