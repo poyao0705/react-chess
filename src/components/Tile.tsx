@@ -8,19 +8,20 @@ type TileProps = {
 };
 
 function getPieceImage(piece: string) {
+  // FEN chars: uppercase = white, lowercase = black
   const pieceMap: Record<string, string> = {
-    wP: "/react-chess/pieces/wP.svg", // White Pawn
-    wN: "/react-chess/pieces/wN.svg", // White Knight
-    wB: "/react-chess/pieces/wB.svg", // White Bishop
-    wR: "/react-chess/pieces/wR.svg", // White Rook
-    wQ: "/react-chess/pieces/wQ.svg", // White Queen
-    wK: "/react-chess/pieces/wK.svg", // White King
-    bP: "/react-chess/pieces/bP.svg", // Black Pawn
-    bN: "/react-chess/pieces/bN.svg", // Black Knight
-    bB: "/react-chess/pieces/bB.svg", // Black Bishop
-    bR: "/react-chess/pieces/bR.svg", // Black Rook
-    bQ: "/react-chess/pieces/bQ.svg", // Black Queen
-    bK: "/react-chess/pieces/bK.svg", // Black King
+    P: "/react-chess/pieces/wP.svg",
+    N: "/react-chess/pieces/wN.svg",
+    B: "/react-chess/pieces/wB.svg",
+    R: "/react-chess/pieces/wR.svg",
+    Q: "/react-chess/pieces/wQ.svg",
+    K: "/react-chess/pieces/wK.svg",
+    p: "/react-chess/pieces/bP.svg",
+    n: "/react-chess/pieces/bN.svg",
+    b: "/react-chess/pieces/bB.svg",
+    r: "/react-chess/pieces/bR.svg",
+    q: "/react-chess/pieces/bQ.svg",
+    k: "/react-chess/pieces/bK.svg",
   };
   return pieceMap[piece] || "";
 }
