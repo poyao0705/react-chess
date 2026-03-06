@@ -1,6 +1,7 @@
 type TileProps = {
   index: number;
   piece?: string | null;
+  isHighlighted?: boolean;
   onClickCallback?: (index: number) => void;
   onDragStartCallback?: (index: number) => void;
   onDropCallback?: (index: number) => void;
@@ -27,19 +28,23 @@ function getPieceImage(piece: string) {
 export default function Tile({
   index,
   piece,
+  isHighlighted = false,
   onClickCallback,
   onDragStartCallback,
   onDropCallback,
 }: TileProps) {
   const isDarkTile = (index + Math.floor(index / 8)) % 2 === 1;
-  const tileColor = isDarkTile ? "bg-gray-800" : "bg-gray-300";
+  const tileColor = isDarkTile ? "bg-gray-500" : "bg-gray-300";
   return (
     <div
-      class={`w-16 h-16 ${tileColor} flex items-center justify-center`}
+      class={`w-16 h-16 ${tileColor} flex items-center justify-center relative`}
       onClick={() => onClickCallback?.(index)}
       onDragOver={(e) => e.preventDefault()}
       onDrop={() => onDropCallback?.(index)}
     >
+      {isHighlighted && (
+        <div class="absolute w-4 h-4 bg-yellow-400 rounded-full opacity-75"></div>
+      )}
       {piece && (
         <img
           src={getPieceImage(piece)}

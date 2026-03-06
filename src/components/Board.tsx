@@ -2,7 +2,8 @@ import Tile from "./Tile";
 import { useChessGame } from "../hook/useChessGame";
 
 export default function Board() {
-  const { boardState, handleDragStart, handleDrop } = useChessGame();
+  const { boardState, validMoves, handleDragStart, handleDrop } =
+    useChessGame();
 
   return (
     <div class="grid grid-cols-8 gap-0">
@@ -12,6 +13,7 @@ export default function Board() {
           key={index}
           index={index}
           piece={boardState[index]}
+          isHighlighted={validMoves.includes(index)}
           onDragStartCallback={handleDragStart}
           onDropCallback={handleDrop}
         />
