@@ -34,7 +34,7 @@ const gameReducer = (state: GameState, action: Action): GameState => {
       if (!piece) return state;
       const pieceColor = piece[0] === "w" ? "white" : "black";
 
-      //   if (pieceColor !== state.currentTurn) return state; TODO testing
+      if (pieceColor !== state.currentTurn) return state; //TODO testing
       return {
         ...state,
         selectedIndex: action.index,
