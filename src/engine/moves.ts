@@ -40,6 +40,8 @@ export function calculateValidMoves(
       for (const dir of directions) {
         let nextIndex = index + dir;
         while (nextIndex >= 0 && nextIndex < 64) {
+          if (dir === 1 && nextIndex % 8 === 0) break; // crossed right edge
+          if (dir === -1 && nextIndex % 8 === 7) break; // crossed left edge
           if (boardState[nextIndex] === null) {
             moves.push(nextIndex);
           } else {
@@ -60,6 +62,7 @@ export function calculateValidMoves(
         if (
           nextIndex >= 0 &&
           nextIndex < 64 &&
+          Math.abs((nextIndex % 8) - (index % 8)) <= 2 &&
           (boardState[nextIndex] === null ||
             boardState[nextIndex]?.[0] === opponent)
         ) {
@@ -73,6 +76,8 @@ export function calculateValidMoves(
       for (const dir of bishopDirections) {
         let nextIndex = index + dir;
         while (nextIndex >= 0 && nextIndex < 64) {
+          if ((dir === 9 || dir === -7) && nextIndex % 8 === 0) break;
+          if ((dir === 7 || dir === -9) && nextIndex % 8 === 7) break;
           if (boardState[nextIndex] === null) {
             moves.push(nextIndex);
           } else {
@@ -91,6 +96,10 @@ export function calculateValidMoves(
       for (const dir of queenDirections) {
         let nextIndex = index + dir;
         while (nextIndex >= 0 && nextIndex < 64) {
+          if ((dir === 1 || dir === 9 || dir === -7) && nextIndex % 8 === 0)
+            break;
+          if ((dir === -1 || dir === 7 || dir === -9) && nextIndex % 8 === 7)
+            break;
           if (boardState[nextIndex] === null) {
             moves.push(nextIndex);
           } else {
@@ -111,6 +120,7 @@ export function calculateValidMoves(
         if (
           nextIndex >= 0 &&
           nextIndex < 64 &&
+          Math.abs((nextIndex % 8) - (index % 8)) <= 1 &&
           (boardState[nextIndex] === null ||
             boardState[nextIndex]?.[0] === opponent)
         ) {
